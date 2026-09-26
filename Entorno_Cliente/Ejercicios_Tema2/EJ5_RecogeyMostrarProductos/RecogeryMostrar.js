@@ -17,8 +17,4 @@ if (productos.length === 0){
 } else {
     console.log(productos);
     console.log(`Total de productos: ${productos.length}`);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b4c2dbcba20d208b438cb89cf0b249fd63d7f5b7
