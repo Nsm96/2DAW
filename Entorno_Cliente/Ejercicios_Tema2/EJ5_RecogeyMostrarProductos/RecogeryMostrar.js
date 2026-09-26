@@ -13,5 +13,8 @@ while (productoIngresado!== null){
 }
 
 if (productos.length === 0){
-    
+    console.log("Lista vacía");
+} else {
+    console.log(productos);
+    console.log(`Total de productos: ${productos.length}`);
 }
