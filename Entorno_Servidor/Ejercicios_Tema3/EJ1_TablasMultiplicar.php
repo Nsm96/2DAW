@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla de multiplicar en PHP</title>
-</head>
-<body>
-    <table border="1">
-    <tr>
-        <td>...</td>
-        <td>...</td>
-    </tr>
-    <tr>
-        <td>..</td>
-        <td>...</td>
-    </tr>
-        <tr>
-        <td>..</td>
-        <td>...</td>
-    </tr>
-</table>
-    <?php
+<?php
+$multiplicar = 1;
 
+echo"<table border=1 class=tabla>";
+for ($i = 1; $i <= 10; $i++){
+    $resultado = $multiplicar * $i;
+       echo"<tr>";
+        echo"<td>$multiplicar x $i</td>";
+        echo"<td>$resultado</td>";
+    echo"</tr>";
+}
+echo "</table>";  
 
+echo "<footer>";
+echo"<link rel='stylesheet' href='EJ_TablaMultiplicar.css'>";
+echo"</footer>";
+?>
 
-    ?>
-</body>
-</html>
