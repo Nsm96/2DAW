@@ -5,7 +5,7 @@ $lista = [
     "Maria" => 5,
     "Jose" => 6,
     "Rubén" => 10,
-    "Sandra" => 8,
+    "Sandra" => 9,
     "Javi" => 7,
 ];
 $clasificacion = "";
