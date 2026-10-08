@@ -18,7 +18,8 @@ $ciudades = [
 
 ];
 
-ksort($ciudades); 
+// ksort($ciudades);
+asort($ciudades);
 
 echo "<table border=1>";
 echo "<tr>";
