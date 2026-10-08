@@ -18,8 +18,32 @@ $ciudades = [
 
 ];
 
-// ksort($ciudades);
 asort($ciudades);
+
+echo "<table border=1>";
+echo "<tr>";
+
+echo "<th>Ciudad</th>";
+
+echo "<th>Poblacion</th>";
+
+echo "</tr>";
+
+foreach ($ciudades as $sitios => $poblacion) {
+
+    echo "<tr>";
+
+    echo "<td>$sitios</td>";
+
+    echo "<td>$poblacion</td>";
+
+    echo "</tr>";
+};
+
+
+
+ksort($ciudades);
+echo "</table>";
 
 echo "<table border=1>";
 echo "<tr>";
