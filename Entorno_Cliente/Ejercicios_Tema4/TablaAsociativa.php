@@ -64,10 +64,9 @@ foreach ($ciudades as $sitios => $poblacion) {
 
     echo "</tr>";
 };
-
+echo "</table>";
 
 // punto B
-
 ksort($ciudades);
 $mayorPoblacion = array_key_first($ciudades);
 
