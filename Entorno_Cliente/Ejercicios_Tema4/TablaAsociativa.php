@@ -1,5 +1,5 @@
 <?php
-
+// Punto A - 1
 $ciudades = [
 
     "Granada" => 150000,
@@ -17,31 +17,6 @@ $ciudades = [
     "Tarragona" => 485210
 
 ];
-
-asort($ciudades);
-
-echo "<table border=1>";
-echo "<tr>";
-
-echo "<th>Ciudad</th>";
-
-echo "<th>Poblacion</th>";
-
-echo "</tr>";
-
-foreach ($ciudades as $sitios => $poblacion) {
-
-    echo "<tr>";
-
-    echo "<td>$sitios</td>";
-
-    echo "<td>$poblacion</td>";
-
-    echo "</tr>";
-};
-
-
-
 ksort($ciudades);
 echo "</table>";
 
@@ -66,3 +41,34 @@ foreach ($ciudades as $sitios => $poblacion) {
 };
 
 echo "</table>";
+
+// Punto A - 2
+asort($ciudades);
+
+echo "<table border=1>";
+echo "<tr>";
+
+echo "<th>Ciudad</th>";
+
+echo "<th>Poblacion</th>";
+
+echo "</tr>";
+
+foreach ($ciudades as $sitios => $poblacion) {
+
+    echo "<tr>";
+
+    echo "<td>$sitios</td>";
+
+    echo "<td>$poblacion</td>";
+
+    echo "</tr>";
+};
+
+
+// punto B
+
+ksort($ciudades);
+$mayorPoblacion = array_key_first($ciudades);
+
+echo "La ciudad con mayor población es:  " . $mayorPoblacion;
