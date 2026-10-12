@@ -18,7 +18,7 @@ $ciudades = [
 
 ];
 ksort($ciudades);
-echo "</table>";
+echo "<table>";
 
 echo "<table border=1>";
 echo "<tr>";
@@ -67,7 +67,10 @@ foreach ($ciudades as $sitios => $poblacion) {
 echo "</table>";
 
 // punto B
-ksort($ciudades);
-$mayorPoblacion = array_key_first($ciudades);
+asort($ciudades);
+$menorPoblacion = array_key_first($ciudades);
+$mayorPoblacion = array_key_last($ciudades);
 
-echo "La ciudad con mayor población es:  " . $mayorPoblacion;
+
+echo "La ciudad con menor población es:  " . $menorPoblacion;
+echo "La ciudad con mayor población es : " . $mayorPoblacion;
