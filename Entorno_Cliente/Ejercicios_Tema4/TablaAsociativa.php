@@ -73,4 +73,5 @@ $mayorPoblacion = array_key_last($ciudades);
 
 
 echo "La ciudad con menor población es:  " . $menorPoblacion;
+echo "<br>";
 echo "La ciudad con mayor población es : " . $mayorPoblacion;
