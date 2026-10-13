@@ -16,13 +16,13 @@ $alumnos = [
         "Matemáticas" => 9,
         "Lengua" => 6.75,
         "Ciencias Naturales" => 9,
-        "Geografía" => 3.1,     
+        "Geografía" => 3.1,
     ]
 ];
 
 echo "<table border=1 class=tabla>";
 echo "<tr>";
-echo "<th>Alumno</th>";    
+echo "<th>Alumno</th>";
 echo "<th>Matemáticas</th>";
 echo "<th>Lengua</th>";
 echo "<th>Ciencias Naturales</th>";
