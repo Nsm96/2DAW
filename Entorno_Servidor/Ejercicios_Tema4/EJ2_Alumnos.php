@@ -1,3 +1,4 @@
+<?php
 $alumnos = [
     "Antonio" => [
         "Matemáticas" => 5,
@@ -19,7 +20,7 @@ $alumnos = [
     ]
 ];
 
-echo "<table>";
+echo "<table border=1 class=tabla>";
 echo "<tr>";
 echo "<th>Alumno</th>";    
 echo "<th>Matemáticas</th>";
@@ -28,6 +29,7 @@ echo "<th>Ciencias Naturales</th>";
 echo "<th>Geografía</th>";
 echo "<th>Media</th>";
 echo "</tr>";
+
 foreach ($alumnos as $nombre => $notas) {
     $notaMedia = array_sum($notas) / count($notas);
 
@@ -44,4 +46,4 @@ echo "</table>";
 
 $nombreBuscado = "Ana";
 
-echo '{$nombreBuscado} tiene un {$not}'
+echo $nombreBuscado . " tiene una nota de: " . $alumnos[$nombreBuscado]["Matemáticas"] . " en matemáticas";
