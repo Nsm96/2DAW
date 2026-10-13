@@ -1,0 +1,45 @@
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  border-top: 3px solid #000000;
+  border-bottom: 3px solid #000000;
+}
+
+/* Cabecera de la tabla */
+.tabla th {
+  background-color: #f17e22;
+  color: #ffffff;
+  padding: 10px 16px;
+  font-weight: bold;
+  text-align: left;
+  border-bottom: 2px solid #000000;
+}
+
+/* Primera casilla de la cabecera (columna 'fila') */
+.tabla th:first-child {
+  background-color: #0b9e43;
+}
+
+/* Celdas del cuerpo de la tabla */
+.tabla td {
+  padding: 8px 16px;
+  color: #000000;
+  text-align: left;
+}
+
+/* Primera columna con números de fila */
+.tabla tbody td:first-child {
+  background-color: #0b9e43;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Alternancia de color en las filas de datos (zebra) */
+.tabla tbody tr:nth-child(odd) td:not(:first-child) {
+  background-color: #e0e0e0;
+}
+
+.tabla tbody tr:nth-child(even) td:not(:first-child) {
+  background-color: #ffffff;
+}

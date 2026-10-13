@@ -83,3 +83,7 @@ foreach ($mascotas as $mascota) {
 };
 echo "<br>";
 echo "El perro que menos pesa es " . $masFlaco["Nombre"] . ", que pesa " . $masFlaco["Peso"] . " kg.";
+
+echo "<footer>";
+echo "<link rel='stylesheet' href='EJ3_Mascotas.css'>";
+echo "</footer>";
