@@ -47,3 +47,7 @@ echo "</table>";
 $nombreBuscado = "Ana";
 
 echo $nombreBuscado . " tiene una nota de: " . $alumnos[$nombreBuscado]["Matemáticas"] . " en matemáticas";
+
+echo "<footer>";
+echo "<link rel='stylesheet' href='EJ2_Alumnos.css'>";
+echo "</footer>";
