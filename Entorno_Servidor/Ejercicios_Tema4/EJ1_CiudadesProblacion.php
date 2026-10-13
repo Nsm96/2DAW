@@ -18,9 +18,7 @@ $ciudades = [
 
 ];
 ksort($ciudades);
-echo "<table>";
-
-echo "<table border=1>";
+echo "<table border=1 class=tabla>";
 echo "<tr>";
 
 echo "<th>Ciudad</th>";
@@ -45,7 +43,7 @@ echo "</table>";
 // Punto A - 2
 asort($ciudades);
 
-echo "<table border=1>";
+echo "<table border=1 class=tabla>";
 echo "<tr>";
 
 echo "<th>Ciudad</th>";
@@ -75,3 +73,7 @@ $mayorPoblacion = array_key_last($ciudades);
 echo "La ciudad con menor población es:  " . $menorPoblacion;
 echo "<br>";
 echo "La ciudad con mayor población es : " . $mayorPoblacion;
+
+echo "<footer>";
+echo "<link rel='stylesheet' href='EJ1_CiudadesProblacion.css'>";
+echo "</footer>";
