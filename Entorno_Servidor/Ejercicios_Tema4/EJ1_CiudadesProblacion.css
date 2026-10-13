@@ -1,0 +1,37 @@
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  border: 1px solid #93b44b;
+}
+
+/* Cabecera de la tabla */
+.tabla th {
+  background-color: #93b44b;
+  color: #ffffff;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: bold;
+  border: 1px solid #93b44b;
+}
+
+/* Celdas del cuerpo */
+.tabla td {
+  padding: 8px 14px;
+  border: 1px solid #93b44b;
+  color: #000000;
+}
+
+/* Alternancia de color en las filas (zebra) */
+.tabla tbody tr:nth-child(odd) {
+  background-color: #eef4d8;
+}
+
+.tabla tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* Primera columna en negrita */
+.tabla td:first-child {
+  font-weight: bold;
+}

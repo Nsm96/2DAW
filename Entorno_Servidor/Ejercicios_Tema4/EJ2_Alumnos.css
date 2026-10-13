@@ -1,0 +1,43 @@
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+/* Cabecera de la tabla */
+.tabla th {
+  background-color: #7d5ca3;
+  color: #1a1024;
+  padding: 10px 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Alineación a la izquierda para la cabecera de la primera columna */
+.tabla th:first-child {
+  text-align: left;
+}
+
+/* Celdas del cuerpo de la tabla */
+.tabla td {
+  padding: 8px 16px;
+  text-align: center;
+  color: #000000;
+}
+
+/* Primera columna (Nombres de los alumnos) */
+.tabla tbody td:first-child {
+  background-color: #7d5ca3;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Filas alternas (zebra) para los datos */
+.tabla tbody tr:nth-child(odd) td:not(:first-child) {
+  background-color: #e3e3e3;
+}
+
+.tabla tbody tr:nth-child(even) td:not(:first-child) {
+  background-color: #ffffff;
+}
