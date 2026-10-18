@@ -70,3 +70,8 @@ body {
     font-size: 12px;
     font-weight: bold;
 }
+
+.precio {
+    color: rgba(38, 0, 255, 0.87);
+    font-weight: bold;
+}
