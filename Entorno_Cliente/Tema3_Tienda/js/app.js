@@ -1,7 +1,7 @@
 const grid = document.querySelector(".grid");
 
 tienda.forEach(function (datos) {
-    console.log(datos);
+
     const caja = document.createElement("div");
     caja.classList.add("tarjetas");
     grid.appendChild(caja);
