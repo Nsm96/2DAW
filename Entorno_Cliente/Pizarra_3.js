@@ -1,15 +1,14 @@
-// const numeros = [14, 9, 0];
+// const numero = 7;
+// let multiplicar = 0;
 
-// for (let i = 0; i < numeros.length; i++) {
-//     if (numeros[i] % 2 == 0) {
-//         console.log("Es par");
-//     } else {
-//         console.log("Es impar");
-//     }
+// for (let i = 1; i <= 10; i++){
+//   multiplicar = numero * i;
+
+//   console.log (`<<${numero} x ${i}>> = ${multiplicar}`);
 // }
 
-const nombre = "Ana";
-const curso = "2.º DAW";
-const pendientes = 3;
+const numeros = [1,2,3];
 
-console.log('${nombre}, de ${curso}, tiene ${pendientes} tareas pendientes.')
+let duplicados = numeros.map(numero => numero * 1.21);
+
+console.log (duplicados);
