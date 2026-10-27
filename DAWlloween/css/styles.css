@@ -10,6 +10,13 @@
     --font-heading: 'Mystery Quest', system-ui;
     --font-body: 'Roboto', sans-serif;
 }
+body {
+    cursor: url('../img/cursor.png'), auto;
+}
+
+a, button, input[type="submit"] {
+    cursor: url('../img/cursor.png'), pointer;
+}
 
 * {
     box-sizing: border-box;
