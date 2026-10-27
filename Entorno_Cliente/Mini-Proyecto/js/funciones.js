@@ -26,5 +26,16 @@ export function sonTodosNuevos (modelosMoviles, anioMinimo){
 
 export function ordenarPorPrecio (modelosMoviles){
     return [...modelosMoviles].sort((a, b) => a.precio - b.precio);
-}
+};
 
+export function obtenerAtributo (movil) {
+    return Object.keys(movil);
+};
+
+export function obtenerDatos (movil){
+    return Object.entries(movil);
+};
+
+export function crearMovilEntradas (datos){
+    return Object.fromEntries(datos)
+};

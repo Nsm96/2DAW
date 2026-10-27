@@ -19,5 +19,12 @@ export const modelosMoviles = [
     anioPublicacion: 2026   ,
     precio: 1450,
     pantallaPulgadas: 6.8
-    },    
+    },
+    {
+    id: "3310",
+    marca: "Nokia",
+    anioPublicacion: 2000,
+    precio: 50,
+    pantallaPulgadas: 1.5
+    },        
 ]
