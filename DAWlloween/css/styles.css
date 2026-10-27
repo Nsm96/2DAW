@@ -1,0 +1,179 @@
+:root {
+    --bg-principal: #0f0f13;
+    --bg-card: #1a1625;
+    --color-primario: #9d4edd;
+    --color-toxico: #70e000;
+    --color-sangre: #d90429;
+    --color-texto: #f0f0f5;
+    --color-texto-mutado: #a0a0b0;
+    --border-radius: 8px;
+    --font-heading: 'Mystery Quest', system-ui;
+    --font-body: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--color-texto);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primario);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(157, 78, 221, 0.3);
+}
+
+h1 {
+    font-size: 2.8rem;
+    text-align: center;
+}
+
+header {
+    background-color: var(--bg-card);
+    border-bottom: 2px solid var(--color-primario);
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--color-texto);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--color-toxico);
+    background-color: rgba(112, 224, 0, 0.1);
+    text-shadow: 0 0 8px var(--color-toxico);
+}
+
+main {
+    flex: 1;
+    max-width: 1000px;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(157, 78, 221, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+label {
+    font-weight: bold;
+    color: var(--color-texto-mutado);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    padding: 0.8rem;
+    background-color: var(--bg-principal);
+    border: 1px solid var(--color-primario);
+    border-radius: var(--border-radius);
+    color: var(--color-texto);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--color-toxico);
+    box-shadow: 0 0 8px rgba(112, 224, 0, 0.4);
+}
+
+button, .btn {
+    background: linear-gradient(135deg, var(--color-primario), #5a189a);
+    color: var(--color-texto);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(157, 78, 221, 0.5);
+}
+
+.alert {
+    padding: 0.8rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.alert-error {
+    background-color: rgba(217, 4, 41, 0.2);
+    border: 1px solid var(--color-sangre);
+    color: #ff6b6b;
+}
+
+.alert-success {
+    background-color: rgba(112, 224, 0, 0.2);
+    border: 1px solid var(--color-toxico);
+    color: var(--color-toxico);
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--bg-card);
+    border-top: 1px solid rgba(157, 78, 221, 0.2);
+    color: var(--color-texto-mutado);
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
