@@ -1,7 +1,7 @@
 import { modelosMoviles } from './datos.js'
 import { mostrarCatalogo, filtrarPorMarca, buscarPorId, buscarPorIdPosicion, hayMovilesCaros, sonTodosNuevos, ordenarPorPrecio, obtenerAtributo, obtenerDatos, crearMovilEntradas } from './funciones.js';
 
-console.log ("Catalogo");
+console.log("Catalogo");
 mostrarCatalogo(modelosMoviles);
 
 console.log("Filtrado por marca");
