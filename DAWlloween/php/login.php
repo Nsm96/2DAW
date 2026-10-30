@@ -3,16 +3,19 @@ require_once 'VarGlobales.php';
 
 $mensajeError = "";
 
+
 if (!empty($_SESSION['currentUser'])) {
     header("Location: ../recetas.html");
     exit();
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuarioInput = trim($_POST['usuario'] ?? '');
     $passwordInput = trim($_POST['password'] ?? '');
 
     $loginValido = false;
+
 
     foreach ($_SESSION['mimatriz'] as $user) {
         if ($user['usuario'] === $usuarioInput && $user['password'] === $passwordInput) {
@@ -78,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <div style="text-align: center; margin-top: 1.5rem;">
-            <p><a href="altaUsuario.php" style="color: var(--color-toxico);">¿No tienes cuenta? Regístrate aquí</a></p>
-            <p><a href="cambioPass.php" style="color: var(--color-texto-mutado);">¿Olvidaste tu contraseña?</a></p>
+            <p><a href="altaUsuario.php" style="color: var(--color-toxico);">¿No eres de los nuestros? ¡Conviértete aquí!</a></p>
+            <p><a href="cambioPass.php" style="color: var(--color-texto-mutado);">¿Olvidaste tu con(juro)traseña?</a></p>
         </div>
     </main>
 

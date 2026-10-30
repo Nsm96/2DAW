@@ -4,12 +4,14 @@ require_once 'VarGlobales.php';
 $mensajeError = "";
 $mensajeExito = "";
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario  = trim($_POST['usuario'] ?? '');
     $password = trim($_POST['password'] ?? '');
     $passConfirm = trim($_POST['passConfirm'] ?? '');
     $email    = trim($_POST['email'] ?? '');
     $pregunta = trim($_POST['pregunta'] ?? '');
+
 
     if (empty($usuario) || empty($password) || empty($email) || empty($pregunta)) {
         $mensajeError = "Todos los campos son obligatorios.";
@@ -29,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mensajeError = "El nombre de usuario ya está registrado en el aquelarre.";
         } else {
 
-        $_SESSION['mimatriz'][] = [
+            $_SESSION['mimatriz'][] = [
                 'usuario'  => $usuario,
                 'password' => $password,
                 'email'    => $email,

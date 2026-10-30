@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const paginasProtegidas = ['recetas.html', 'juego.html'];
     
-    // Normalizar la página actual si se accede desde halloween.local/
     let paginaActual = window.location.pathname.split('/').pop();
     if (!paginaActual || paginaActual === '') {
         paginaActual = 'index.html';
@@ -38,11 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 2. USUARIO NO AUTENTICADO (INVITADO)
                 // ==========================================
                 
-                // Ocultar elementos y secciones privadas
                 gestionarVisibilidad(['recetas', 'recetas.html', 'minijuego', 'juego.html', '.solo-login'], false);
                 gestionarVisibilidad(['acceso', 'login.php', '.solo-invitado'], true);
 
-                // Redirección de seguridad si intenta forzar la URL
                 if (paginasProtegidas.includes(paginaActual)) {
                     window.location.href = 'php/login.php';
                 }
@@ -51,12 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.error('Error al comprobar la sesión:', err));
 });
 
-// Función global para controlar visibilidad de enlaces y bloques contenedores
 function gestionarVisibilidad(elementos, mostrar) {
     const estadoDisplay = mostrar ? '' : 'none';
 
     elementos.forEach(clave => {
-        // A) Si es una clase CSS personalizada (ej. .solo-login)
+
         if (clave.startsWith('.')) {
             document.querySelectorAll(clave).forEach(el => {
                 el.style.display = estadoDisplay;
@@ -64,7 +60,6 @@ function gestionarVisibilidad(elementos, mostrar) {
             return;
         }
 
-  
         document.querySelectorAll('a').forEach(enlace => {
             const texto = enlace.textContent.trim().toLowerCase();
             const href = (enlace.getAttribute('href') || '').toLowerCase();
