@@ -3,20 +3,17 @@ require_once 'VarGlobales.php';
 
 $mensajeError = "";
 
-// Si el usuario ya está autenticado, redirigir a las recetas (Zona Privada)
 if (!empty($_SESSION['currentUser'])) {
     header("Location: ../recetas.html");
     exit();
 }
 
-// Procesar el formulario cuando se envía por POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuarioInput = trim($_POST['usuario'] ?? '');
     $passwordInput = trim($_POST['password'] ?? '');
 
     $loginValido = false;
 
-    // Recorrer la matriz de usuarios en sesión
     foreach ($_SESSION['mimatriz'] as $user) {
         if ($user['usuario'] === $usuarioInput && $user['password'] === $passwordInput) {
             $_SESSION['currentUser'] = $user['usuario'];

@@ -4,7 +4,6 @@ require_once 'VarGlobales.php';
 $mensajeError = "";
 $mensajeExito = "";
 
-// Si el formulario se envía por POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario  = trim($_POST['usuario'] ?? '');
     $password = trim($_POST['password'] ?? '');
@@ -12,13 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email    = trim($_POST['email'] ?? '');
     $pregunta = trim($_POST['pregunta'] ?? '');
 
-    // 1. Validaciones básicas
     if (empty($usuario) || empty($password) || empty($email) || empty($pregunta)) {
         $mensajeError = "Todos los campos son obligatorios.";
     } elseif ($password !== $passConfirm) {
         $mensajeError = "Las contraseñas no coinciden.";
     } else {
-        // 2. Comprobar si el usuario ya existe en la matriz de sesión
+
         $usuarioExiste = false;
         foreach ($_SESSION['mimatriz'] as $user) {
             if (strtolower($user['usuario']) === strtolower($usuario)) {
@@ -30,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($usuarioExiste) {
             $mensajeError = "El nombre de usuario ya está registrado en el aquelarre.";
         } else {
-            // 3. Añadir el nuevo usuario a $_SESSION['mimatriz']
-            $_SESSION['mimatriz'][] = [
+
+        $_SESSION['mimatriz'][] = [
                 'usuario'  => $usuario,
                 'password' => $password,
                 'email'    => $email,

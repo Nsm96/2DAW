@@ -11,7 +11,6 @@ let tiempo = 0;
 let intervaloTiempo = null;
 let comodinUsado = false;
 
-// Función para formatear el tiempo en minutos y segundos
 function formatearTiempo(totalSegundos) {
     if (totalSegundos < 60) {
         return `${totalSegundos}s`;

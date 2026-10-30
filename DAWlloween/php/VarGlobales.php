@@ -1,10 +1,10 @@
 <?php
-// Iniciar sesión en el servidor si no está ya iniciada
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Inicializar la matriz de usuarios en la sesión si aún no existe
+
 if (!isset($_SESSION['mimatriz'])) {
     $_SESSION['mimatriz'] = [
         [
@@ -24,7 +24,6 @@ if (!isset($_SESSION['mimatriz'])) {
     ];
 }
 
-// Inicializar la variable del usuario actual en sesión si no existe
 if (!isset($_SESSION['currentUser'])) {
     $_SESSION['currentUser'] = null;
 }
