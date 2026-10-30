@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         paginaActual = 'index.html';
     }
 
-    fetch('php/mostrar_usuario.php')
+    fetch('php/mostrar_usuarios.php')
         .then(response => response.json())
         .then(data => {
             if (data.usuario) {
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     header.appendChild(badge);
                 }
 
-                // Mostrar elementos privados y ocultar botón de Acceso
                 gestionarVisibilidad(['recetas', 'recetas.html', 'minijuego', 'juego.html', '.solo-login'], true);
                 gestionarVisibilidad(['acceso', 'login.php', '.solo-invitado'], false);
 
@@ -52,7 +51,6 @@ function gestionarVisibilidad(elementos, mostrar) {
     const estadoDisplay = mostrar ? '' : 'none';
 
     elementos.forEach(clave => {
-
         if (clave.startsWith('.')) {
             document.querySelectorAll(clave).forEach(el => {
                 el.style.display = estadoDisplay;
