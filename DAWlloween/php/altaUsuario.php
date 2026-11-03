@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nuevoEmail = trim($_POST['email'] ?? '');
     $nuevaPregunta = trim($_POST['pregunta'] ?? '');
 
-    // 1. Validaciones de servidor
+    
     if (empty($nuevoUsuario) || empty($nuevaPassword) || empty($nuevoEmail) || empty($nuevaPregunta)) {
         $mensajeError = "Todos los campos son obligatorios.";
     } elseif ($nuevaPassword !== $confirmPassword) {
