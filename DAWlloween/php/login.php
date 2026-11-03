@@ -3,30 +3,52 @@ require_once 'VarGlobales.php';
 
 $mensajeError = "";
 
-
+// 1. Si ya tiene sesión activa en PHP, guardamos en localStorage y redirigimos
 if (!empty($_SESSION['currentUser'])) {
-    header("Location: ../recetas.html");
+    echo "
+    <!DOCTYPE html>
+    <html lang='es'>
+    <head><meta charset='UTF-8'></head>
+    <body>
+        <script>
+            localStorage.setItem('usuario', '" . addslashes($_SESSION['currentUser']) . "');
+            window.location.href = '../recetas.html';
+        </script>
+    </body>
+    </html>";
     exit();
 }
 
-
+// 2. Procesar el formulario de Login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuarioInput = trim($_POST['usuario'] ?? '');
     $passwordInput = trim($_POST['password'] ?? '');
 
     $loginValido = false;
 
-
-    foreach ($_SESSION['mimatriz'] as $user) {
-        if ($user['usuario'] === $usuarioInput && $user['password'] === $passwordInput) {
-            $_SESSION['currentUser'] = $user['usuario'];
-            $loginValido = true;
-            break;
+    if (isset($_SESSION['mimatriz']) && is_array($_SESSION['mimatriz'])) {
+        foreach ($_SESSION['mimatriz'] as $user) {
+            if ($user['usuario'] === $usuarioInput && $user['password'] === $passwordInput) {
+                $_SESSION['currentUser'] = $user['usuario'];
+                $loginValido = true;
+                break;
+            }
         }
     }
 
     if ($loginValido) {
-        header("Location: ../recetas.html");
+        // Guardamos en localStorage y redirigimos a recetas.html
+        echo "
+        <!DOCTYPE html>
+        <html lang='es'>
+        <head><meta charset='UTF-8'></head>
+        <body>
+            <script>
+                localStorage.setItem('usuario', '" . addslashes($_SESSION['currentUser']) . "');
+                window.location.href = '../recetas.html';
+            </script>
+        </body>
+        </html>";
         exit();
     } else {
         $mensajeError = "Credenciales incorrectas. Revisa usuario o contraseña.";
