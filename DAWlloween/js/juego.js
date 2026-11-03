@@ -18,7 +18,6 @@ let tiempo = 0;
 let intervaloTiempo = null;
 let comodinUsado = false;
 
-// Función para formatear el tiempo en minutos y segundos
 function formatearTiempo(totalSegundos) {
     if (totalSegundos < 60) {
         return `${totalSegundos}s`;
@@ -62,7 +61,6 @@ function iniciarJuego() {
         if (elTiempo) elTiempo.textContent = formatearTiempo(tiempo);
     }, 1000);
 
-    // Duplicar y mezclar parejas de imágenes
     cartas = [...simbolos, ...simbolos];
     cartas.sort(() => Math.random() - 0.5);
 
