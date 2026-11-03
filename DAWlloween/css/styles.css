@@ -1,6 +1,4 @@
-/* ==========================================
-   1. VARIABLES Y CONFIGURACIÓN GLOBAL
-   ========================================== */
+
 :root {
     --bg-principal: #0f0f13;
     --bg-card: #161221;
@@ -36,12 +34,8 @@ a, button, input[type="submit"] {
     cursor: url('../img/cursor.png'), pointer;
 }
 
-/* ==========================================
-   2. TIPOGRAFÍA Y ENCABEZADOS UNIFICADOS
-   ========================================== */
-/* ==========================================
-   2. TIPOGRAFÍA Y ENCABEZADOS (Sin efectos)
-   ========================================== */
+
+
 h1, h2, h3 {
     font-family: var(--font-heading);
     color: var(--color-primario);
@@ -60,9 +54,7 @@ h1,
     margin-bottom: 1.5rem;
 }
 
-/* ==========================================
-   3. NAVEGACIÓN Y CABECERA
-   ========================================== */
+
 header {
     position: relative;
     display: flex;
@@ -97,7 +89,7 @@ nav a:hover {
     text-shadow: 0 0 8px var(--color-toxico);
 }
 
-/* Badge de Usuario Logueado */
+
 .header-user {
     position: absolute;
     right: 25px;
@@ -137,9 +129,7 @@ nav a:hover {
     display: none;
 }
 
-/* ==========================================
-   4. CONTENEDOR PRINCIPAL (<main>) UNIFICADO
-   ========================================== */
+
 main,
 .recetas-wrapper {
     flex: 1;
@@ -154,9 +144,7 @@ main,
     box-sizing: border-box;
 }
 
-/* ==========================================
-   5. FORMULARIOS, BOTONES Y ALERTAS
-   ========================================== */
+
 form {
     display: flex;
     flex-direction: column;
@@ -256,9 +244,7 @@ button:disabled {
     color: var(--color-toxico);
 }
 
-/* ==========================================
-   6. MINIJUEGO ("El Grimorio del Olvido")
-   ========================================== */
+
 .game-container {
     text-align: center;
 }
@@ -336,9 +322,7 @@ button:disabled {
     flex-wrap: wrap;
 }
 
-/* ==========================================
-   7. SECCIÓN DE RECETAS
-   ========================================== */
+
 .recetas-card-container {
     width: 100%;
     background: transparent;
@@ -387,7 +371,7 @@ button:disabled {
     font-weight: bold;
 }
 
-/* Modal Emergente de Recetas */
+
 .modal-overlay {
     display: none;
     position: fixed;
@@ -459,9 +443,7 @@ button:disabled {
     margin-bottom: 10px;
 }
 
-/* ==========================================
-   8. PIE DE PÁGINA (FOOTER)
-   ========================================== */
+
 footer {
     text-align: center;
     padding: 1.5rem 0;
@@ -483,9 +465,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* ==========================================
-   9. ADAPTABILIDAD (MEDIA QUERIES)
-   ========================================== */
+
 @media (max-width: 768px) {
     .recetas-grid {
         grid-template-columns: repeat(2, 1fr);
