@@ -1,6 +1,13 @@
-const iconos = ['👻', '🎃', '🧙‍♀️', '🦇', '🧪', '💀'];
-let cartas = [...iconos, ...iconos];
+const simbolos = [
+    'img/calabaza.png',
+    'img/fantasma.png',
+    'img/sombrero.png',
+    'img/pocion.png',
+    'img/gato.png',
+    'img/calavera.png'
+];
 
+let cartas = [];
 let primeraCarta = null;
 let segundaCarta = null;
 let bloqueoTablero = false;
@@ -33,14 +40,16 @@ function iniciarJuego() {
     if (!tablero) return;
 
     tablero.innerHTML = '';
-    mensajeWin.style.display = 'none';
+    if (mensajeWin) mensajeWin.style.display = 'none';
     intentos = 0;
     parejasEncontradas = 0;
     tiempo = 0;
     comodinUsado = false;
 
-    document.getElementById('contador-intentos').textContent = intentos;
-    document.getElementById('tiempo').textContent = formatearTiempo(tiempo);
+    const elIntentos = document.getElementById('contador-intentos');
+    const elTiempo = document.getElementById('tiempo');
+    if (elIntentos) elIntentos.textContent = intentos;
+    if (elTiempo) elTiempo.textContent = formatearTiempo(tiempo);
 
     if (btnComodin) {
         btnComodin.disabled = false;
@@ -50,16 +59,18 @@ function iniciarJuego() {
     clearInterval(intervaloTiempo);
     intervaloTiempo = setInterval(() => {
         tiempo++;
-        document.getElementById('tiempo').textContent = formatearTiempo(tiempo);
+        if (elTiempo) elTiempo.textContent = formatearTiempo(tiempo);
     }, 1000);
 
+    // Duplicar y mezclar parejas de imágenes
+    cartas = [...simbolos, ...simbolos];
     cartas.sort(() => Math.random() - 0.5);
 
-    cartas.forEach((icono) => {
+    cartas.forEach((rutaImagen) => {
         const card = document.createElement('div');
         card.classList.add('card');
-        card.dataset.value = icono;
-        card.textContent = '❓';
+        card.dataset.value = rutaImagen;
+        card.innerHTML = '❓';
         card.addEventListener('click', voltearCarta);
         tablero.appendChild(card);
     });
@@ -69,7 +80,7 @@ function voltearCarta() {
     if (bloqueoTablero || this === primeraCarta || this.classList.contains('matched')) return;
 
     this.classList.add('flipped');
-    this.textContent = this.dataset.value;
+    this.innerHTML = `<img src="${this.dataset.value}" alt="Carta">`;
 
     if (!primeraCarta) {
         primeraCarta = this;
@@ -78,7 +89,8 @@ function voltearCarta() {
 
     segundaCarta = this;
     intentos++;
-    document.getElementById('contador-intentos').textContent = intentos;
+    const elIntentos = document.getElementById('contador-intentos');
+    if (elIntentos) elIntentos.textContent = intentos;
 
     comprobarPareja();
 }
@@ -100,11 +112,13 @@ function marcarEmparejadas() {
 
     resetearSeleccion();
 
-    if (parejasEncontradas === iconos.length) {
+    if (parejasEncontradas === simbolos.length) {
         clearInterval(intervaloTiempo);
         const mensajeWin = document.getElementById('mensaje-victoria');
-        mensajeWin.textContent = `¡Felicidades! Has completado el ritual en ${intentos} intentos y un tiempo total de ${formatearTiempo(tiempo)}.`;
-        mensajeWin.style.display = 'block';
+        if (mensajeWin) {
+            mensajeWin.textContent = `¡Felicidades! Has completado el ritual en ${intentos} intentos y un tiempo total de ${formatearTiempo(tiempo)}.`;
+            mensajeWin.style.display = 'block';
+        }
     }
 }
 
@@ -114,8 +128,8 @@ function desvoltearCartas() {
     segundaCarta.classList.add('error');
 
     setTimeout(() => {
-        primeraCarta.textContent = '❓';
-        segundaCarta.textContent = '❓';
+        primeraCarta.innerHTML = '❓';
+        segundaCarta.innerHTML = '❓';
         primeraCarta.classList.remove('flipped', 'error');
         segundaCarta.classList.remove('flipped', 'error');
         resetearSeleccion();
@@ -140,18 +154,19 @@ function usarComodin() {
     }
 
     intentos += 3;
-    document.getElementById('contador-intentos').textContent = intentos;
+    const elIntentos = document.getElementById('contador-intentos');
+    if (elIntentos) elIntentos.textContent = intentos;
 
     const ocultas = document.querySelectorAll('.card:not(.matched)');
     ocultas.forEach(card => {
-        card.textContent = card.dataset.value;
+        card.innerHTML = `<img src="${card.dataset.value}" alt="Carta">`;
         card.classList.add('flipped');
     });
 
     setTimeout(() => {
         ocultas.forEach(card => {
             if (card !== primeraCarta) {
-                card.textContent = '❓';
+                card.innerHTML = '❓';
                 card.classList.remove('flipped');
             }
         });

@@ -399,3 +399,10 @@ header {
 .solo-login {
     display: none;
 }
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
