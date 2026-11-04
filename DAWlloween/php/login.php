@@ -73,8 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header>
         <nav>
             <ul>
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="login.php">Acceso</a></li>
+                <li><a href="../aboutus.html">Inicio</a></li>
             </ul>
         </nav>
     </header>

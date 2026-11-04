@@ -19,5 +19,12 @@
         "email": "Juanito@juan.com",
         "perfil": "usuario",
         "pregunta": "Yo"
+    },
+    {
+        "usuario": "pepe",
+        "password": "123123",
+        "email": "pepe@pepe.com",
+        "perfil": "usuario",
+        "pregunta": "pepe"
     }
 ]

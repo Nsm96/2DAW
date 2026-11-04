@@ -1,8 +1,19 @@
 <?php
 require_once 'VarGlobales.php';
 
+// Iniciar sesión si no está iniciada aún
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // 1. Control de seguridad
 if (empty($_SESSION['currentUser'])) {
+    // Si viene por AJAX, devolvemos un error claro en lugar de HTML
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false || $_SERVER['REQUEST_METHOD'] === 'POST') {
+        http_response_code(401);
+        echo "Error: Sesión no iniciada. Por favor, inicia sesión.";
+        exit();
+    }
     header("Location: login.php");
     exit();
 }
@@ -10,55 +21,48 @@ if (empty($_SESSION['currentUser'])) {
 $mensajeFeedback = "";
 $errorFeedback = "";
 
-// 2. Procesar el formulario cuando se envía por POST
+// 2. Procesar el formulario POST (AJAX o tradicional)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $asunto = trim($_POST['asunto'] ?? '');
-    $mensaje = trim($_POST['mensaje'] ?? '');
+    $asuntoInput = trim($_POST['asunto'] ?? '');
+    $mensajeInput = trim($_POST['mensaje'] ?? '');
 
-    if (!empty($asunto) && !empty($mensaje)) {
+    if (!empty($asuntoInput) && !empty($mensajeInput)) {
         
-        // 3. Buscar el email del usuario actual dentro de la matriz de sesión
-        $emailRemitente = "";
+        // Correo del usuario actual
+        $emailRemitente = $_SESSION['currentUserEmail'] ?? "nico@dawlloween.dev";
+
+        // Si la sesión guarda la matriz, buscar su email
         if (isset($_SESSION['mimatriz']) && is_array($_SESSION['mimatriz'])) {
             foreach ($_SESSION['mimatriz'] as $user) {
-                // Comprobamos usuario e intentamos extraer Email (sensible a mayúsculas)
                 if (isset($user['usuario']) && $user['usuario'] === $_SESSION['currentUser']) {
-                    $emailRemitente = $user['Email'] ?? $user['email'] ?? '';
+                    $emailRemitente = $user['Email'] ?? $user['email'] ?? $emailRemitente;
                     break;
                 }
             }
         }
 
-        // Si no se encuentra en la matriz, usamos el de la sesión o uno por defecto
-        if (empty($emailRemitente)) {
-            $emailRemitente = $_SESSION['currentUserEmail'] ?? "nico@dawlloween.dev";
-        }
-
-        // Limpiamos el email de saltos de línea para evitar inyecciones en la cabecera
         $emailRemitente = trim(str_replace(["\r", "\n"], '', $emailRemitente));
-
-        // 4. Configuración del correo
         $destinatario = "jack.skellington@dawlloween.dev";
-        $asuntoCorreo = "DAWlloween - " . $asunto; // Sin htmlspecialchars en el mail
-        
-        $cuerpoMensaje = "Mensaje de pesadillas enviado por el usuario: " . $_SESSION['currentUser'] . "\n\n" .
-                         "Mensaje:\n" . $mensaje;
+        $asuntoCorreo = $asuntoInput;
+        $cuerpoMensaje = $mensajeInput;
 
-        // Cabeceras obligatorias (FROM con el usuario de la sesión)
         $headers = "From: " . $emailRemitente . "\r\n" .
                    "Reply-To: " . $emailRemitente . "\r\n" .
                    "Content-Type: text/plain; charset=UTF-8\r\n" .
                    "X-Mailer: PHP/" . phpversion();
 
-        // 5. Envío usando la función mail() sin la @ para capturar errores reales
         if (mail($destinatario, $asuntoCorreo, $cuerpoMensaje, $headers)) {
-            $mensajeFeedback = "¡Mensaje enviado con éxito a Jack! Te responderá antes de medianoche. 🎃";
+            echo "OK";
+            exit();
         } else {
-            $errorFeedback = "El mensaje no pudo entregarse al servicio de correo local.";
+            http_response_code(500);
+            echo "Error al ejecutar mail()";
+            exit();
         }
-
     } else {
-        $errorFeedback = "Por favor, completa todos los campos del formulario.";
+        http_response_code(400);
+        echo "Faltan campos por completar";
+        exit();
     }
 }
 ?>

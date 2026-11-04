@@ -1,40 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Lista de páginas protegidas
-    const paginasProtegidas = ['recetas.html', 'juego.html'];
 
+    // 1. Páginas que requieren inicio de sesión obligatorio
+    const paginasProtegidas = ['recetas.html', 'juego.html', 'correojack.html'];
+    
     let paginaActual = window.location.pathname.split('/').pop();
     if (!paginaActual || paginaActual === '') {
-        paginaActual = 'index.html';
+        paginaActual = 'aboutus.html';
     }
 
-    const usuarioLogueado = localStorage.getItem('usuario');
+    // 2. Comprobar sesión contra el servidor PHP
+    fetch('php/mostrar_usuarios.php')
+        .then(response => response.json())
+        .then(data => {
+            const usuarioAutenticado = data && data.usuario;
 
-    // 2. Control de navegación según sesión
-    if (usuarioLogueado) {
-        const usuarioLogueado = localStorage.getItem('usuario');
+            if (usuarioAutenticado) {
+                // ==========================================
+                // USUARIO AUTENTICADO
+                // ==========================================
+                
+                // Guardar variable de usuario en JS para consistencia
+                localStorage.setItem('usuario', data.usuario);
 
-if (usuarioLogueado) {
-    // Añade una clase al body para activar las reglas de CSS de arriba
-    document.body.classList.add('usuario-logueado');
-}
-        // Ocultar "Inicio"
-        const enlaceInicio = document.querySelector('nav a[href="index.html"], nav a[href="./"]');
-        if (enlaceInicio && enlaceInicio.parentElement) {
-            enlaceInicio.parentElement.style.display = 'none';
-        }
-        // Mostrar elementos privados (Correo de Jack)
-        document.querySelectorAll('.solo-login').forEach(el => el.style.display = 'inline-block');
-    } else {
-        // Ocultar elementos privados si no hay sesión
-        document.querySelectorAll('.solo-login').forEach(el => el.style.display = 'none');
-    }
+                // Pintar o actualizar el badge en el header (incluye el botón de logout)
+                pintarHeaderUsuario(data.usuario);
 
-    // 3. Protección de rutas (Redirige a login.php si no hay sesión)
-    if (paginasProtegidas.includes(paginaActual) && !usuarioLogueado) {
-        window.location.href = 'php/login.php';
-    }
+                // Configurar visibilidad del menú
+                gestionarVisibilidad(['recetas', 'recetas.html', 'juego.html', 'correojack.html', '.solo-login'], true);
+                gestionarVisibilidad(['login.php', '.solo-invitado'], false);
 
-    // 4. Lógica del Correo de Jack
+                document.body.classList.add('usuario-logueado');
+
+            } else {
+                // ==========================================
+                // USUARIO NO AUTENTICADO (INVITADO)
+                // ==========================================
+                
+                localStorage.removeItem('usuario');
+
+                // Quitar badge de usuario si existiera
+                const badgeExistente = document.querySelector('.header-user');
+                if (badgeExistente) badgeExistente.remove();
+
+                // Configurar visibilidad del menú
+                gestionarVisibilidad(['recetas.html', 'juego.html', 'correojack.html', '.solo-login'], false);
+                gestionarVisibilidad(['login.php', '.solo-invitado'], true);
+
+                // Protección de rutas: si intenta acceder a una página privada sin sesión
+                if (paginasProtegidas.includes(paginaActual)) {
+                    alert('🎃 ¡¡Boof!! Necesitas iniciar sesión para acceder a esta sección.');
+                    window.location.href = 'php/login.php';
+                }
+            }
+        })
+        .catch(err => {
+            console.error('Error al comprobar la sesión:', err);
+            // Ante cualquier error de red, si la página es privada redirigimos
+            if (paginasProtegidas.includes(paginaActual)) {
+                window.location.href = 'php/login.php';
+            }
+        });
+
+    // 3. Lógica del formulario en "El Correo de Jack"
     const formJack = document.getElementById('form-correo-jack');
     const alertaRespuesta = document.getElementById('mensaje-correo');
 
@@ -42,62 +69,64 @@ if (usuarioLogueado) {
         formJack.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Si tienes un input de nombre lo usa, si no, usa el usuario logueado
-            const nombreInput = document.getElementById('nombre');
-            const nombre = nombreInput ? nombreInput.value : (usuarioLogueado || 'Amigo');
+            const formData = new FormData(formJack);
+            const btnEnviar = formJack.querySelector('button[type="submit"]');
+            if (btnEnviar) btnEnviar.disabled = true;
 
-            // Mostrar simulación de envío
-            alertaRespuesta.className = 'alert alert-success';
-            alertaRespuesta.textContent = `¡Mensaje enviado con éxito, ${nombre}! Jack te responderá antes de medianoche. 🎃`;
-            alertaRespuesta.style.display = 'block';
-
-            // Limpiar el formulario
-            formJack.reset();
+            fetch('php/correo.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.text();
+            })
+            .then(data => {
+                alertaRespuesta.className = 'alert alert-success';
+                alertaRespuesta.textContent = `¡Mensaje enviado con éxito a Jack! Te responderá antes de medianoche. 🎃`;
+                alertaRespuesta.style.display = 'block';
+                formJack.reset();
+            })
+            .catch(error => {
+                console.error('Error al enviar:', error);
+                alertaRespuesta.className = 'alert alert-error';
+                alertaRespuesta.textContent = 'Hubo un error al entregar el mensaje. Inténtalo de nuevo.';
+                alertaRespuesta.style.display = 'block';
+            })
+            .finally(() => {
+                if (btnEnviar) btnEnviar.disabled = false;
+            });
         });
     }
-
-
-    fetch('php/mostrar_usuarios.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.usuario) {
-                // ==========================================
-                // 1. USUARIO AUTENTICADO
-                // ==========================================
-                const header = document.querySelector('header');
-                
-                if (header && !document.querySelector('.header-user')) {
-                    const badge = document.createElement('div');
-                    badge.className = 'header-user';
-                    badge.innerHTML = `
-                        <span class="user-badge">
-                            🦇 <strong>${data.usuario.toUpperCase()}</strong> 🦇
-                            <span style="opacity: 0.5; margin: 0 4px;">|</span>
-                            <a href="php/logout.php" class="btn-logout-badge" title="Cerrar sesión">Huir 🚪</a>
-                        </span>
-                    `;
-                    header.appendChild(badge);
-                }
-
-                gestionarVisibilidad(['recetas', 'recetas.html', 'minijuego', 'juego.html', '.solo-login'], true);
-                gestionarVisibilidad(['acceso', 'login.php', '.solo-invitado'], false);
-
-            } else {
-                // ==========================================
-                // 2. USUARIO NO AUTENTICADO (INVITADO)
-                // ==========================================
-                
-                gestionarVisibilidad(['recetas', 'recetas.html', 'minijuego', 'juego.html', '.solo-login'], false);
-                gestionarVisibilidad(['acceso', 'login.php', '.solo-invitado'], true);
-
-                if (paginasProtegidas.includes(paginaActual)) {
-                    window.location.href = 'php/login.php';
-                }
-            }
-        })
-        .catch(err => console.error('Error al comprobar la sesión:', err));
 });
 
+// Función auxiliar para renderizar el badge del usuario y botón Huir
+function pintarHeaderUsuario(nombreUsuario) {
+    let container = document.getElementById('user-badge-container');
+    const header = document.querySelector('header');
+
+    if (!container && header) {
+        container = document.createElement('div');
+        container.className = 'header-user solo-login';
+        container.id = 'user-badge-container';
+        header.appendChild(container);
+    }
+
+    if (container) {
+        container.style.display = 'inline-block';
+        container.innerHTML = `
+            <span class="user-badge">
+                🦇 <strong>${nombreUsuario.toUpperCase()}</strong> 🦇
+                <span style="opacity: 0.5; margin: 0 4px;">|</span>
+                <a href="php/logout.php" class="btn-logout-badge" title="Cerrar sesión">Huir 🚪</a>
+            </span>
+        `;
+    }
+}
+
+// Función para alternar la visibilidad de elementos según estado de sesión
 function gestionarVisibilidad(elementos, mostrar) {
     const estadoDisplay = mostrar ? '' : 'none';
 

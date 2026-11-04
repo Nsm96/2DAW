@@ -116,6 +116,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php endif; ?>
     </main>
+        <footer>
+        <p>DAWlloween &copy; - <a href="../aboutus.html">Sobre mí</a></p>
+    </footer>
 
 </body>
 </html>

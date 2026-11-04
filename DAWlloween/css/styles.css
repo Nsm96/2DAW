@@ -491,3 +491,33 @@ body.usuario-logueado .solo-login {
 body.usuario-logueado .solo-invitado {
     display: none !important;
 }
+
+/* Adaptación responsive para pantallas móviles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 1rem;
+        height: auto;
+    }
+
+    header nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 15px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .header-user {
+        margin-top: 5px;
+        justify-content: center;
+    }
+
+    .user-badge {
+        font-size: 0.85rem;
+        padding: 4px 10px;
+    }
+}
