@@ -1,52 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Páginas que requieren inicio de sesión obligatorio
+
     const paginasProtegidas = ['recetas.html', 'juego.html', 'correojack.html'];
-    
+
     let paginaActual = window.location.pathname.split('/').pop();
     if (!paginaActual || paginaActual === '') {
         paginaActual = 'aboutus.html';
     }
 
-    // 2. Comprobar sesión contra el servidor PHP
+
     fetch('php/mostrar_usuarios.php')
         .then(response => response.json())
         .then(data => {
             const usuarioAutenticado = data && data.usuario;
 
             if (usuarioAutenticado) {
-                // ==========================================
-                // USUARIO AUTENTICADO
-                // ==========================================
-                
-                // Guardar variable de usuario en JS para consistencia
+
                 localStorage.setItem('usuario', data.usuario);
 
-                // Pintar o actualizar el badge en el header (incluye el botón de logout)
                 pintarHeaderUsuario(data.usuario);
 
-                // Configurar visibilidad del menú
                 gestionarVisibilidad(['recetas', 'recetas.html', 'juego.html', 'correojack.html', '.solo-login'], true);
                 gestionarVisibilidad(['login.php', '.solo-invitado'], false);
 
                 document.body.classList.add('usuario-logueado');
 
             } else {
-                // ==========================================
-                // USUARIO NO AUTENTICADO (INVITADO)
-                // ==========================================
-                
+
                 localStorage.removeItem('usuario');
 
-                // Quitar badge de usuario si existiera
                 const badgeExistente = document.querySelector('.header-user');
                 if (badgeExistente) badgeExistente.remove();
 
-                // Configurar visibilidad del menú
                 gestionarVisibilidad(['recetas.html', 'juego.html', 'correojack.html', '.solo-login'], false);
                 gestionarVisibilidad(['login.php', '.solo-invitado'], true);
 
-                // Protección de rutas: si intenta acceder a una página privada sin sesión
                 if (paginasProtegidas.includes(paginaActual)) {
                     alert('🎃 ¡¡Boof!! Necesitas iniciar sesión para acceder a esta sección.');
                     window.location.href = 'php/login.php';
@@ -55,13 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => {
             console.error('Error al comprobar la sesión:', err);
-            // Ante cualquier error de red, si la página es privada redirigimos
+
             if (paginasProtegidas.includes(paginaActual)) {
                 window.location.href = 'php/login.php';
             }
         });
 
-    // 3. Lógica del formulario en "El Correo de Jack"
     const formJack = document.getElementById('form-correo-jack');
     const alertaRespuesta = document.getElementById('mensaje-correo');
 
@@ -77,32 +64,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.text();
-            })
-            .then(data => {
-                alertaRespuesta.className = 'alert alert-success';
-                alertaRespuesta.textContent = `¡Mensaje enviado con éxito a Jack! Te responderá antes de medianoche. 🎃`;
-                alertaRespuesta.style.display = 'block';
-                formJack.reset();
-            })
-            .catch(error => {
-                console.error('Error al enviar:', error);
-                alertaRespuesta.className = 'alert alert-error';
-                alertaRespuesta.textContent = 'Hubo un error al entregar el mensaje. Inténtalo de nuevo.';
-                alertaRespuesta.style.display = 'block';
-            })
-            .finally(() => {
-                if (btnEnviar) btnEnviar.disabled = false;
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    alertaRespuesta.className = 'alert alert-success';
+                    alertaRespuesta.textContent = `¡Mensaje enviado con éxito a Jack! Te responderá antes de medianoche. 🎃`;
+                    alertaRespuesta.style.display = 'block';
+                    formJack.reset();
+                })
+                .catch(error => {
+                    console.error('Error al enviar:', error);
+                    alertaRespuesta.className = 'alert alert-error';
+                    alertaRespuesta.textContent = 'Hubo un error al entregar el mensaje. Inténtalo de nuevo.';
+                    alertaRespuesta.style.display = 'block';
+                })
+                .finally(() => {
+                    if (btnEnviar) btnEnviar.disabled = false;
+                });
         });
     }
 });
 
-// Función auxiliar para renderizar el badge del usuario y botón Huir
+
 function pintarHeaderUsuario(nombreUsuario) {
     let container = document.getElementById('user-badge-container');
     const header = document.querySelector('header');
@@ -126,7 +113,6 @@ function pintarHeaderUsuario(nombreUsuario) {
     }
 }
 
-// Función para alternar la visibilidad de elementos según estado de sesión
 function gestionarVisibilidad(elementos, mostrar) {
     const estadoDisplay = mostrar ? '' : 'none';
 

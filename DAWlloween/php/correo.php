@@ -1,7 +1,7 @@
 <?php
 require_once 'VarGlobales.php';
 
-// 1. Control de seguridad: Si no hay sesión iniciada, redirigir al login
+
 if (empty($_SESSION['currentUser'])) {
     header("Location: login.php");
     exit();
@@ -10,14 +10,12 @@ if (empty($_SESSION['currentUser'])) {
 $mensajeFeedback = "";
 $errorFeedback = "";
 
-// 2. Procesar el formulario cuando se envía por POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $asunto = trim($_POST['asunto'] ?? '');
     $mensaje = trim($_POST['mensaje'] ?? '');
 
     if (!empty($asunto) && !empty($mensaje)) {
         
-        // 3. Buscar el email del usuario actual dentro de la matriz de sesión
         $emailRemitente = "";
         if (isset($_SESSION['mimatriz']) && is_array($_SESSION['mimatriz'])) {
             foreach ($_SESSION['mimatriz'] as $user) {
@@ -28,23 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Si por alguna razón no encuentra el correo, ponemos uno por defecto
         if (empty($emailRemitente)) {
             $emailRemitente = "no-reply@dawlloween.dev";
         }
 
-        // 4. Configuración del correo para Jack
-        $destinatario = "jack.skellington@dawlloween.dev"; // O tu correo de prueba de Yahoo configurado en sendmail
+        $destinatario = "jack.skellington@dawlloween.dev"; 
         $asuntoCorreo = "DAWlloween - " . htmlspecialchars($asunto);
         
         $cuerpoMensaje = "Contenido del correo:\n" . htmlspecialchars($mensaje);
 
-        // Cabeceras obligatorias indicando el FROM del usuario logueado según la rúbrica
+        
         $headers = "From: " . $emailRemitente . "\r\n" .
                    "Reply-To: " . $emailRemitente . "\r\n" .
                    "X-Mailer: PHP/" . phpversion();
 
-        // 5. Envío usando la función mail() de PHP
+        
         if (@mail($destinatario, $asuntoCorreo, $cuerpoMensaje, $headers)) {
             $mensajeFeedback = "¡Mensaje enviado con éxito a Jack! Te responderá antes de medianoche. 🎃";
         } else {
@@ -62,9 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Correo de Jack - DAWlloween</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https:
+    <link rel="preconnect" href="https:
+    <link href="https:
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>

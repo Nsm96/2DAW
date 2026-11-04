@@ -3,7 +3,7 @@ require_once 'VarGlobales.php';
 
 $mensajeError = "";
 
-// 1. Si ya tiene sesión activa en PHP, guardamos en localStorage y redirigimos
+
 if (!empty($_SESSION['currentUser'])) {
     echo "
     <!DOCTYPE html>
@@ -19,7 +19,6 @@ if (!empty($_SESSION['currentUser'])) {
     exit();
 }
 
-// 2. Procesar el formulario de Login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuarioInput = trim($_POST['usuario'] ?? '');
     $passwordInput = trim($_POST['password'] ?? '');
@@ -37,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($loginValido) {
-        // Guardamos en localStorage y redirigimos a recetas.html
+        
         echo "
         <!DOCTYPE html>
         <html lang='es'>
@@ -62,10 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAWlloween - Acceso</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https:
+    <link rel="preconnect" href="https:
+    <link href="https:
+    <link href="https:
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
