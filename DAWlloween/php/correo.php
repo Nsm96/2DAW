@@ -37,8 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $destinatario = "jack.skellington@dawlloween.dev"; // O tu correo de prueba de Yahoo configurado en sendmail
         $asuntoCorreo = "DAWlloween - " . htmlspecialchars($asunto);
         
-        $cuerpoMensaje = "Mensaje de pesadillas enviado por el usuario: " . $_SESSION['currentUser'] . "\n\n" .
-                         "Mensaje:\n" . htmlspecialchars($mensaje);
+        $cuerpoMensaje = "Contenido del correo:\n" . htmlspecialchars($mensaje);
 
         // Cabeceras obligatorias indicando el FROM del usuario logueado según la rúbrica
         $headers = "From: " . $emailRemitente . "\r\n" .
@@ -49,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (@mail($destinatario, $asuntoCorreo, $cuerpoMensaje, $headers)) {
             $mensajeFeedback = "¡Mensaje enviado con éxito a Jack! Te responderá antes de medianoche. 🎃";
         } else {
-            $errorFeedback = "El mensaje no pudo enviarse. Revisa la configuración de Sendmail/SMTP en XAMPP.";
+            $errorFeedback = "El mensaje no pudo enviarse. Revisa la configuración de Sendmail/SMTP.";
         }
 
     } else {
@@ -73,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header>
         <nav>
             <ul>
-                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../aboutus.html">Inicio</a></li>
                 <li><a href="../recetas.html">Recetas</a></li>
                 <li><a href="../juego.html">Minijuego</a></li>
                 <li><a href="correo.php">Correo de Jack</a></li>
