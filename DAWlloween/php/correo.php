@@ -1,24 +1,8 @@
 <?php
 require_once 'VarGlobales.php';
 
-<<<<<<< HEAD
-// Iniciar sesión si no está iniciada aún
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// 1. Control de seguridad
-if (empty($_SESSION['currentUser'])) {
-    // Si viene por AJAX, devolvemos un error claro en lugar de HTML
-    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strpos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false || $_SERVER['REQUEST_METHOD'] === 'POST') {
-        http_response_code(401);
-        echo "Error: Sesión no iniciada. Por favor, inicia sesión.";
-        exit();
-    }
-=======
 // 1. Control de seguridad: Si no hay sesión iniciada, redirigir al login
 if (empty($_SESSION['currentUser'])) {
->>>>>>> 18ab672846d3cd94d8a5ad2d6a1d0ae1023c2920
     header("Location: login.php");
     exit();
 }
@@ -26,23 +10,6 @@ if (empty($_SESSION['currentUser'])) {
 $mensajeFeedback = "";
 $errorFeedback = "";
 
-<<<<<<< HEAD
-// 2. Procesar el formulario POST (AJAX o tradicional)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $asuntoInput = trim($_POST['asunto'] ?? '');
-    $mensajeInput = trim($_POST['mensaje'] ?? '');
-
-    if (!empty($asuntoInput) && !empty($mensajeInput)) {
-        
-        // Correo del usuario actual
-        $emailRemitente = $_SESSION['currentUserEmail'] ?? "nico@dawlloween.dev";
-
-        // Si la sesión guarda la matriz, buscar su email
-        if (isset($_SESSION['mimatriz']) && is_array($_SESSION['mimatriz'])) {
-            foreach ($_SESSION['mimatriz'] as $user) {
-                if (isset($user['usuario']) && $user['usuario'] === $_SESSION['currentUser']) {
-                    $emailRemitente = $user['Email'] ?? $user['email'] ?? $emailRemitente;
-=======
 // 2. Procesar el formulario cuando se envía por POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $asunto = trim($_POST['asunto'] ?? '');
@@ -56,36 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($_SESSION['mimatriz'] as $user) {
                 if ($user['usuario'] === $_SESSION['currentUser']) {
                     $emailRemitente = $user['email'];
->>>>>>> 18ab672846d3cd94d8a5ad2d6a1d0ae1023c2920
                     break;
                 }
             }
         }
 
-<<<<<<< HEAD
-        $emailRemitente = trim(str_replace(["\r", "\n"], '', $emailRemitente));
-        $destinatario = "jack.skellington@dawlloween.dev";
-        $asuntoCorreo = $asuntoInput;
-        $cuerpoMensaje = $mensajeInput;
-
-        $headers = "From: " . $emailRemitente . "\r\n" .
-                   "Reply-To: " . $emailRemitente . "\r\n" .
-                   "Content-Type: text/plain; charset=UTF-8\r\n" .
-                   "X-Mailer: PHP/" . phpversion();
-
-        if (mail($destinatario, $asuntoCorreo, $cuerpoMensaje, $headers)) {
-            echo "OK";
-            exit();
-        } else {
-            http_response_code(500);
-            echo "Error al ejecutar mail()";
-            exit();
-        }
-    } else {
-        http_response_code(400);
-        echo "Faltan campos por completar";
-        exit();
-=======
         // Si por alguna razón no encuentra el correo, ponemos uno por defecto
         if (empty($emailRemitente)) {
             $emailRemitente = "no-reply@dawlloween.dev";
@@ -112,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } else {
         $errorFeedback = "Por favor, completa todos los campos del formulario.";
->>>>>>> 18ab672846d3cd94d8a5ad2d6a1d0ae1023c2920
     }
 }
 ?>
