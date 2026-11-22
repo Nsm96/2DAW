@@ -1,14 +1,33 @@
-// const numero = 7;
-// let multiplicar = 0;
+const lista = document.querySelector("#lista-compra");
 
-// for (let i = 1; i <= 10; i++){
-//   multiplicar = numero * i;
+const elemento = document.createElement("li");
 
-//   console.log (`<<${numero} x ${i}>> = ${multiplicar}`);
-// }
+elemento.classList.add("producto");
 
-const numeros = [1,2,3];
+elemento.textContent = "Pan";
+lista.append(elemento);
 
-let duplicados = numeros.map(numero => numero * 1.21);
+const boton = document.querySelector("#btn-anadir");
 
-console.log (duplicados);
+let contador = 0;
+boton.addEventListener("click", () => {
+    contador++;
+    const elemento2 = document.createElement("li");
+    const texto = document.createElement("span");
+    texto.textContent = "Elemento " + contador;
+    const btnBorrar = document.createElement("button");
+    btnBorrar.type = "button";
+    btnBorrar.textContent = "Borrar";
+    btnBorrar.dataset.accion = "borrar";
+    elemento2.append(texto, btnBorrar);
+    lista.append(elemento2)
+});
+
+lista.addEventListener("click", (event) => {
+    const botonPulsado = event.target.closest("button[data-accion]");
+    if (!botonPulsado) return;
+    if (botonPulsado.dataset.accion === "borrar") {
+        const fila = botonPulsado.closest("li");
+        fila.remove();
+    }
+})
