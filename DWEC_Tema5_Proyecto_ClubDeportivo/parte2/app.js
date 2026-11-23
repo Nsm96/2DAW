@@ -485,7 +485,7 @@ function parsearDatetimeLocal(valor) {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    mostrarEstado(estado, "ok", "Validación nativa HTML superada.", [
+    mostrarEstado(estado, "ok", "Validación HTML superada.", [
       `Valor: "${campo.value}"`,
       `HTML checkValidity(): ${campo.checkValidity()}`,
       `JS validarCodigoServicio(): ${validarCodigoServicio(campo.value)}`
