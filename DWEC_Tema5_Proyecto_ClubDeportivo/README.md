@@ -1,7 +1,7 @@
 # Proyecto UD5 — Club Deportivo: Formularios Fiables (DWEC 2.º DAW)
 
 ## Estructura del proyecto
-- `parte1/`: versión funcional del Tema 5A (HTML5 + API de validación JS sin expresiones regulares ni `pattern`), con `index.html`, `estilos.css`, `app.js` y `pruebas.md`.
+- `parte1/`: versión funcional del Tema 5A (HTML5 + validación JS sin expresiones regulares ni `pattern`), con `index.html`, `estilos.css`, `app.js` y `pruebas.md`.
 - `parte2/`: versión ampliada del Tema 5B con expresiones regulares, funciones puras en `validadores.js`, integración en `app.js`, pruebas automatizadas en `pruebas.js` y resultados en `pruebas.md`.
 
 ## Cómo abrir y probar
