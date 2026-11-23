@@ -1,0 +1,220 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background-color: #f0f2f5;
+    color: #1e293b;
+    line-height: 1.6;
+    padding: 1.5rem 1rem;
+}
+
+.contenedor {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.cabecera {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #f8fafc;
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 4px solid #eab308;
+}
+
+.cabecera h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+    color: #facc15;
+}
+
+.subtitulo {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.info-test {
+    padding: 1.25rem 2rem 0;
+    color: #475569;
+}
+
+.formulario-test,
+.desglose {
+    padding: 1.5rem 2rem 2rem;
+}
+
+.tarjeta-pregunta {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: #f8fafc;
+}
+
+.tarjeta-pregunta legend {
+    background-color: #1e293b;
+    color: #facc15;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.enunciado {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin: 0.5rem 0 1rem;
+    color: #0f172a;
+}
+
+.lista-opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.opcion:hover {
+    border-color: #2563eb;
+    background-color: #eff6ff;
+}
+
+.opcion input[type="radio"] {
+    accent-color: #2563eb;
+    width: 1.1rem;
+    height: 1.1rem;
+    cursor: pointer;
+}
+
+.acciones {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.btn-primario {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primario:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secundario {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.btn-secundario:hover {
+    background-color: #cbd5e1;
+}
+
+/* Resultados */
+.resumen-nota {
+    margin: 1.5rem 2rem 0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.resumen-nota.aprobado {
+    background-color: #dcfce7;
+    border: 1px solid #86efac;
+    color: #166534;
+}
+
+.resumen-nota.suspenso {
+    background-color: #fee2e2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+}
+
+.metricas {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: #ffffff;
+}
+
+.desglose h3 {
+    margin-bottom: 1rem;
+    color: #0f172a;
+}
+
+.item-revision {
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 5px solid;
+}
+
+.item-revision h4 {
+    margin-bottom: 0.4rem;
+}
+
+.estado-acierto {
+    background-color: #f0fdf4;
+    border-color: #22c55e;
+}
+
+.estado-fallo {
+    background-color: #fef2f2;
+    border-color: #ef4444;
+}
+
+.estado-sin_contestar {
+    background-color: #fefce8;
+    border-color: #eab308;
+}
+
+.pie {
+    text-align: center;
+    padding: 1.25rem;
+    background-color: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 0.85rem;
+}
