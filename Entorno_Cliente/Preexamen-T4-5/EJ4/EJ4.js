@@ -10,12 +10,9 @@ const limite = 20;
 
 
 discos.forEach(item => {
-    const listaDiscos = document.createElement("li");
-    if (item.precio >= 20){
-        
+    if (item.precio <= limite) {
+        const li = document.createElement("li");
+        li.textContent = item.titulo + " - " + item.precio.toFixed(2) + " €";
+        listaUl.append(li);
     }
 });
-
-
-
-
