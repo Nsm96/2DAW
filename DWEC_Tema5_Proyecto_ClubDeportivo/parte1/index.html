@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Club Deportivo Horizonte — Parte 1</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor">
+      <h1>Club Deportivo Horizonte</h1>
+      <nav aria-label="Formularios del club">
+        <ul class="menu-forms">
+          <li><a href="#sec-socios">Socios</a></li>
+          <li><a href="#sec-servicios">Servicios</a></li>
+          <li><a href="#sec-testimonios">Testimonios</a></li>
+          <li><a href="#sec-noticias">Noticias</a></li>
+          <li><a href="#sec-citas">Citas</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <!-- 1. FORMULARIO DE SOCIOS -->
+    <section id="sec-socios" class="tarjeta" aria-labelledby="h-socios">
+      <h2 id="h-socios">1. Formulario de socios</h2>
+      <form id="form-socios" novalidate>
+        <fieldset>
+          <legend>Datos personales y de acceso</legend>
+
+          <div class="campo">
+            <label for="socio-nombre">Nombre completo</label>
+            <input id="socio-nombre" name="nombre" type="text" required minlength="4" maxlength="50"
+                   autocomplete="name" aria-describedby="ayuda-socio-nombre error-socio-nombre">
+            <p id="ayuda-socio-nombre" class="ayuda">Obligatorio. Entre 4 y 50 caracteres.</p>
+            <p id="error-socio-nombre" class="error"></p>
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label for="socio-usuario">Usuario</label>
+              <input id="socio-usuario" name="usuario" type="text" required minlength="5" maxlength="20"
+                     autocomplete="username" aria-describedby="ayuda-socio-usuario error-socio-usuario">
+              <p id="ayuda-socio-usuario" class="ayuda">Obligatorio. Entre 5 y 20 caracteres.</p>
+              <p id="error-socio-usuario" class="error"></p>
+            </div>
+
+            <div class="campo">
+              <label for="socio-correo">Correo electrónico</label>
+              <input id="socio-correo" name="correo" type="email" required
+                     autocomplete="email" aria-describedby="ayuda-socio-correo error-socio-correo">
+              <p id="ayuda-socio-correo" class="ayuda">Obligatorio. Formato de correo válido.</p>
+              <p id="error-socio-correo" class="error"></p>
+            </div>
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label for="socio-edad">Edad</label>
+              <input id="socio-edad" name="edad" type="number" required min="18" max="100" step="1"
+                     aria-describedby="ayuda-socio-edad error-socio-edad">
+              <p id="ayuda-socio-edad" class="ayuda">Entero entre 18 y 100.</p>
+              <p id="error-socio-edad" class="error"></p>
+            </div>
+
+            <div class="campo">
+              <label for="socio-telefono">Teléfono</label>
+              <input id="socio-telefono" name="telefono" type="tel" required
+                     autocomplete="tel" aria-describedby="ayuda-socio-telefono error-socio-telefono">
+              <p id="ayuda-socio-telefono" class="ayuda">Obligatorio.</p>
+              <p id="error-socio-telefono" class="error"></p>
+            </div>
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label for="socio-contrasena">Contraseña</label>
+              <input id="socio-contrasena" name="contrasena" type="password" required minlength="8" maxlength="16"
+                     autocomplete="new-password" aria-describedby="ayuda-socio-contrasena error-socio-contrasena">
+              <p id="ayuda-socio-contrasena" class="ayuda">De 8 a 16 caracteres.</p>
+              <p id="error-socio-contrasena" class="error"></p>
+            </div>
+
+            <div class="campo">
+              <label for="socio-confirmacion">Confirmar contraseña</label>
+              <input id="socio-confirmacion" name="confirmacion" type="password" required minlength="8" maxlength="16"
+                     autocomplete="new-password" aria-describedby="ayuda-socio-confirmacion error-socio-confirmacion">
+              <p id="ayuda-socio-confirmacion" class="ayuda">Debe ser idéntica a la contraseña.</p>
+              <p id="error-socio-confirmacion" class="error"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset id="grupo-modalidad" aria-describedby="error-socio-modalidad">
+          <legend>Modalidad de suscripción</legend>
+          <div class="radios">
+            <label for="mod-mensual" class="check-linea">
+              <input id="mod-mensual" name="modalidad" type="radio" value="mensual" required>
+              <span>Mensual</span>
+            </label>
+            <label for="mod-anual" class="check-linea">
+              <input id="mod-anual" name="modalidad" type="radio" value="anual">
+              <span>Anual</span>
+            </label>
+          </div>
+          <p id="error-socio-modalidad" class="error"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Foto y condiciones</legend>
+          <div class="campo">
+            <label for="socio-foto">Foto de perfil (JPEG, máximo 5.000.000 bytes)</label>
+            <input id="socio-foto" name="foto" type="file" required accept="image/jpeg"
+                   aria-describedby="error-socio-foto">
+            <p id="error-socio-foto" class="error"></p>
+          </div>
+
+          <div class="campo">
+            <label for="socio-condiciones" class="check-linea">
+              <input id="socio-condiciones" name="condiciones" type="checkbox" value="aceptadas" required
+                     aria-describedby="error-socio-condiciones">
+              <span>Acepto las condiciones del club deportivo</span>
+            </label>
+            <p id="error-socio-condiciones" class="error"></p>
+          </div>
+        </fieldset>
+
+        <button type="submit">Registrar socio</button>
+      </form>
+      <div id="estado-socios" class="estado" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- 2. FORMULARIO DE SERVICIOS -->
+    <section id="sec-servicios" class="tarjeta" aria-labelledby="h-servicios">
+      <h2 id="h-servicios">2. Formulario de servicios</h2>
+      <form id="form-servicios" novalidate>
+        <fieldset>
+          <legend>Detalle del servicio</legend>
+
+          <div class="campo">
+            <label for="servicio-nombre">Nombre</label>
+            <input id="servicio-nombre" name="nombre" type="text" required minlength="3" maxlength="50"
+                   aria-describedby="ayuda-servicio-nombre error-servicio-nombre">
+            <p id="ayuda-servicio-nombre" class="ayuda">De 3 a 50 caracteres.</p>
+            <p id="error-servicio-nombre" class="error"></p>
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label for="servicio-duracion">Duración (minutos)</label>
+              <input id="servicio-duracion" name="duracion" type="number" required min="15" step="15"
+                     aria-describedby="ayuda-servicio-duracion error-servicio-duracion">
+              <p id="ayuda-servicio-duracion" class="ayuda">Entero, mínimo 15 y múltiplo de 15.</p>
+              <p id="error-servicio-duracion" class="error"></p>
+            </div>
+
+            <div class="campo">
+              <label for="servicio-precio">Precio (€)</label>
+              <input id="servicio-precio" name="precio" type="number" required min="0" max="9999.99" step="0.01"
+                     aria-describedby="ayuda-servicio-precio error-servicio-precio">
+              <p id="ayuda-servicio-precio" class="ayuda">De 0 a 9999,99 con paso 0,01.</p>
+              <p id="error-servicio-precio" class="error"></p>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="servicio-categoria">Categoría</label>
+            <select id="servicio-categoria" name="categoria" required aria-describedby="error-servicio-categoria">
+              <option value="">Seleccionar categoría</option>
+              <option value="fitness">Fitness y musculación</option>
+              <option value="acuatica">Actividades acuáticas</option>
+              <option value="raqueta">Deportes de raqueta</option>
+              <option value="salud">Fisioterapia y salud</option>
+            </select>
+            <p id="error-servicio-categoria" class="error"></p>
+          </div>
+        </fieldset>
+
+        <button type="submit">Guardar servicio</button>
+      </form>
+      <div id="estado-servicios" class="estado" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- 3. FORMULARIO DE TESTIMONIOS -->
+    <section id="sec-testimonios" class="tarjeta" aria-labelledby="h-testimonios">
+      <h2 id="h-testimonios">3. Formulario de testimonios</h2>
+      <form id="form-testimonios" novalidate>
+        <fieldset>
+          <legend>Valoración del socio</legend>
+
+          <div class="campo">
+            <label for="testimonio-autor">Autor</label>
+            <input id="testimonio-autor" name="autor" type="text" required minlength="2" maxlength="50"
+                   aria-describedby="ayuda-testimonio-autor error-testimonio-autor">
+            <p id="ayuda-testimonio-autor" class="ayuda">De 2 a 50 caracteres.</p>
+            <p id="error-testimonio-autor" class="error"></p>
+          </div>
+
+          <div class="campo">
+            <label for="testimonio-texto">Testimonio</label>
+            <textarea id="testimonio-texto" name="testimonio" rows="4" required minlength="10" maxlength="500"
+                      aria-describedby="contador-testimonio error-testimonio-texto"></textarea>
+            <p id="contador-testimonio" class="ayuda">0 / 500 caracteres (mínimo 10).</p>
+            <p id="error-testimonio-texto" class="error"></p>
+          </div>
+
+          <div class="campo">
+            <label for="testimonio-publicar" class="check-linea">
+              <input id="testimonio-publicar" name="publicar" type="checkbox" value="si">
+              <span>Autorizo su publicación</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit">Enviar testimonio</button>
+      </form>
+      <div id="estado-testimonios" class="estado" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- 4. FORMULARIO DE NOTICIAS -->
+    <section id="sec-noticias" class="tarjeta" aria-labelledby="h-noticias">
+      <h2 id="h-noticias">4. Formulario de noticias</h2>
+      <form id="form-noticias" novalidate>
+        <fieldset>
+          <legend>Publicación de comunicado</legend>
+
+          <div class="campo">
+            <label for="noticia-titulo">Título</label>
+            <input id="noticia-titulo" name="titulo" type="text" required minlength="3" maxlength="100"
+                   aria-describedby="ayuda-noticia-titulo error-noticia-titulo">
+            <p id="ayuda-noticia-titulo" class="ayuda">De 3 a 100 caracteres.</p>
+            <p id="error-noticia-titulo" class="error"></p>
+          </div>
+
+          <div class="campo">
+            <label for="noticia-contenido">Contenido</label>
+            <textarea id="noticia-contenido" name="contenido" rows="4" required minlength="20" maxlength="2000"
+                      aria-describedby="ayuda-noticia-contenido error-noticia-contenido"></textarea>
+            <p id="ayuda-noticia-contenido" class="ayuda">De 20 a 2000 caracteres.</p>
+            <p id="error-noticia-contenido" class="error"></p>
+          </div>
+
+          <div class="fila">
+            <div class="campo">
+              <label for="noticia-fecha">Fecha de publicación</label>
+              <input id="noticia-fecha" name="fecha" type="date" required
+                     aria-describedby="ayuda-noticia-fecha error-noticia-fecha">
+              <p id="ayuda-noticia-fecha" class="ayuda">Fecha posterior a la de hoy.</p>
+              <p id="error-noticia-fecha" class="error"></p>
+            </div>
+
+            <div class="campo">
+              <label for="noticia-imagen">Imagen (JPEG, máximo 5.000.000 bytes)</label>
+              <input id="noticia-imagen" name="imagen" type="file" required accept="image/jpeg"
+                     aria-describedby="error-noticia-imagen">
+              <p id="error-noticia-imagen" class="error"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit">Publicar noticia</button>
+      </form>
+      <div id="estado-noticias" class="estado" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- 5. FORMULARIO DE CITAS -->
+    <section id="sec-citas" class="tarjeta" aria-labelledby="h-citas">
+      <h2 id="h-citas">5. Formulario de citas</h2>
+      <form id="form-citas" novalidate>
+        <fieldset>
+          <legend>Reserva de cita</legend>
+
+          <div class="fila">
+            <div class="campo">
+              <label for="cita-socio">Socio</label>
+              <select id="cita-socio" name="socio" required aria-describedby="error-cita-socio">
+                <option value="">Seleccionar socio</option>
+                <option value="SOC-01">Laura Gómez (SOC-01)</option>
+                <option value="SOC-02">Carlos Ruiz (SOC-02)</option>
+                <option value="SOC-03">Marta Navarro (SOC-03)</option>
+                <option value="SOC-04">Javier Ortega (SOC-04)</option>
+              </select>
+              <p id="error-cita-socio" class="error"></p>
+            </div>
+
+            <div class="campo">
+              <label for="cita-servicio">Servicio</label>
+              <select id="cita-servicio" name="servicio" required aria-describedby="error-cita-servicio">
+                <option value="">Seleccionar servicio</option>
+                <option value="SRV-01">Entrenamiento funcional (45 min)</option>
+                <option value="SRV-02">Natación libre (60 min)</option>
+                <option value="SRV-03">Pista de pádel (90 min)</option>
+                <option value="SRV-04">Fisioterapia deportiva (30 min)</option>
+              </select>
+              <p id="error-cita-servicio" class="error"></p>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="cita-fecha-hora">Fecha y hora</label>
+            <input id="cita-fecha-hora" name="fechaHora" type="datetime-local" required
+                   aria-describedby="ayuda-cita-fecha-hora error-cita-fecha-hora">
+            <p id="ayuda-cita-fecha-hora" class="ayuda">Estrictamente posterior al momento actual.</p>
+            <p id="error-cita-fecha-hora" class="error"></p>
+          </div>
+
+          <div class="campo">
+            <label for="cita-confirmacion" class="check-linea">
+              <input id="cita-confirmacion" name="confirmacion" type="checkbox" value="revisada" required
+                     aria-describedby="error-cita-confirmacion">
+              <span>He revisado los datos de la cita</span>
+            </label>
+            <p id="error-cita-confirmacion" class="error"></p>
+          </div>
+        </fieldset>
+
+        <button type="submit">Confirmar cita</button>
+      </form>
+      <div id="estado-citas" class="estado" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p>Entorno cliente - Nicolás Serrano Morante</p>
+    </div>
+  </footer>
+</body>
+</html>

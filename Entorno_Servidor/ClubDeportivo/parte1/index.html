@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Club deportivo - Nico</title>
+    <script src="estilos.css" defer></script>
+</head>
+
+<body>
+    <form id="form-socios" novalidate>
+        <label for="nombreCompleto">Nombre completo: </label>
+        <input minlength="4" maxlength="50" />
+        <br /><br />
+        <label for="email">Correo electrónico: </label>
+        <input type="email" placeholder="ejemplo@dominio.com" />
+        <label for="edad">Edad: </label>
+        <input type="number" min="18" max="100" step="1" />
+        <br /><br />
+        <fieldset>
+            <legend>Mensual</legend>
+            <input type="radio" name="modalidad">
+        </fieldset>
+        <fieldset>
+            <legend>Anual</legend>
+            <input type="radio" name="modalidad">
+        </fieldset>
+    </form>
+</body>
+</html>
