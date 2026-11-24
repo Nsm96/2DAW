@@ -1,29 +1,26 @@
-const menos = document.querySelector("#menos");
-const mas = document.querySelector("#mas");
-const total = document.querySelector("#total");
-
+const sumar = document.querySelector("#mas");
+const restar = document.querySelector("#menos");
+const resultado = document.querySelector("#total");
 let contador = 0;
 
- function actualizarContador() {
-    total.textContent = contador;
-    if (contador === 0) {
-        menos.disabled = true;
-    } else {
-        menos.disabled = false;
-    }
+sumar.addEventListener("click", () => {
+  contador++;
+  actualizarContador();
+});
+restar.addEventListener("click", () => {
+  if (contador > 0) {
+    contador--;
+  }
+  actualizarContador();
+});
 
+function actualizarContador() {
+  if (contador === 0) {
+    restar.disabled = true;
+  } else {
+    restar.disabled = false;
+  }
+  resultado.textContent = contador;
 }
-
-mas.addEventListener("click", () => {
-    contador++;
-    actualizarContador();
-})
-
-menos.addEventListener("click", () => {
-    if (contador > 0) {
-        contador--;
-        actualizarContador();
-    }
-})
 
 actualizarContador();

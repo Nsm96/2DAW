@@ -1,16 +1,14 @@
-const busqueda = document.querySelector("#busqueda");
-const lista = document.querySelectorAll("#lista li");
+const buscar = document.querySelector("#busqueda");
+const generos = document.querySelectorAll("#lista li");
 
-busqueda.addEventListener("input", () => {
-    const textoBuscado = busqueda.value.trim().toLowerCase();
+buscar.addEventListener("input", () => {
+  const textobuscado = buscar.value.trim().toLowerCase();
 
-    lista.forEach(categorias => {
-        const categoriaBuscada = categorias.textContent.trim().toLowerCase();
-        if (categoriaBuscada.includes(textoBuscado)) {
-            categorias.hidden = false;
-        } else {
-            categorias.hidden = true;
-        }
-
-    });
-})
+  generos.forEach((categorias) => {
+    if (!categorias.textContent.toLowerCase().includes(textobuscado)) {
+      categorias.hidden = true;
+    } else {
+      categorias.hidden = false;
+    }
+  });
+});
