@@ -1,5 +1,5 @@
 const lista = document.querySelectorAll(".stock");
 
-lista.forEach(categorias => {
-    categorias.textContent += " - disponible";
+lista.forEach((categoria) => {
+  categoria.textContent += " - Disponible";
 });
