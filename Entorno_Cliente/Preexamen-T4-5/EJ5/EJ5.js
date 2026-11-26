@@ -1,17 +1,17 @@
-const list = document.querySelector("#lista");
-const final = document.querySelector("#total");
+const listUl = document.querySelector("#lista");
+const resultadoTotal = document.querySelector("#total");
 
-function actualizarTotal() {
-  final.textContent = "LI Totales: " + list.querySelectorAll("li").length;
+listUl.addEventListener("click", (e) => {
+  if (e.target.closest(".borrar")){
+    e.target.closest("li").remove();
+    recuentoTotal();
+  }
+})
+
+function recuentoTotal() {
+  const listaLi = document.querySelectorAll("#lista li")
+  const recuento = listaLi.length;
+  resultadoTotal.textContent = "Total: " + recuento;
 }
 
-list.addEventListener("click", (event) => {
-  const boton = event.target.closest(".borrar");
-  if (!boton) {
-    return;
-  }
-  boton.closest("li").remove();
-  actualizarTotal();
-});
-
-actualizarTotal();
+recuentoTotal();

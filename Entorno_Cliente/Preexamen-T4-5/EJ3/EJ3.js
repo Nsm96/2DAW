@@ -1,14 +1,14 @@
 const buscar = document.querySelector("#busqueda");
-const generos = document.querySelectorAll("#lista li");
+const list = document.querySelectorAll("#lista li");
 
-buscar.addEventListener("input", () => {
-  const textobuscado = buscar.value.trim().toLowerCase();
+buscar.addEventListener("input", ()=> {
+  const textoLimpio = buscar.value.toLowerCase().trim();
 
-  generos.forEach((categorias) => {
-    if (!categorias.textContent.toLowerCase().includes(textobuscado)) {
-      categorias.hidden = true;
+  list.forEach(categoria => {
+    if (categoria.textContent.toLowerCase().includes(textoLimpio)){
+      categoria.hidden = false;
     } else {
-      categorias.hidden = false;
+      categoria.hidden = true;
     }
   });
 });
